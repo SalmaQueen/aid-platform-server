@@ -6,20 +6,22 @@
 # Read more: https://github.com/cyu/rack-cors
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins 'https://guarded-eyrie-31559.herokuapp.com/'
+
+    resource '*',
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
   # allow do
-  #   origins 'example.com'
-
-  #   resource '*',
-  #     headers: :any,
-  #     methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  #   origins "http://localhost:3001"
+  #   resource "*", headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
   # end
-  allow do
-    origins "http://localhost:3001"
-    resource "*", headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
-  end
 
-  allow do
-    origins "https://guarded-eyrie-31559.herokuapp.com/" :put, :patch, :delete, :options, :head]
-    resource "*", headers: :any, methods: [:get, :post,
-  end
+  # allow do
+  #   origins "https://guarded-eyrie-31559.herokuapp.com/" 
+  #   methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  #   resource "*",
+  #    headers: :any, methods: [:get, :post]
+  # end
 end
